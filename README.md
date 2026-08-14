@@ -66,3 +66,40 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+<!-- ARCH-DIAGRAM:START -->
+
+## Architecture
+
+> Auto-generated architecture diagram. See [`docs/context-map.md`](docs/context-map.md) for the full context map (core application, containers/cloud, and database connections).
+
+```mermaid
+flowchart TD
+  User([User / Client])
+  UI["Frontend:80/443/3333<br/>Next.js / React"]
+  App["gophish<br/>Flask / Django / Express / Node"]
+  AI["Vertex AI / Gemini<br/>(LLM / Agent Engine)"]
+  DB0[("MySQL / MariaDB")]
+  DB1[("MongoDB")]
+  DB2[("Redis")]
+  DB3[("SQLite")]
+  SVC0["AWS"]
+  SVC1["Azure"]
+  SVC2["Cloudflare Workers"]
+  Img["Container image<br/>(Docker)"]
+  Deploy["GKE / Kubernetes"]
+  User --> UI
+  UI --> App
+  App --> AI
+  App --> DB0
+  App --> DB1
+  App --> DB2
+  App --> DB3
+  App --> SVC0
+  App --> SVC1
+  App --> SVC2
+  App -.deploy.-> Img
+  Img -.deploy.-> Deploy
+```
+
+<!-- ARCH-DIAGRAM:END -->
